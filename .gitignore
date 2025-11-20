@@ -1,0 +1,11 @@
+__pycache__/
+.ipynb_checkpoints/
+.claude/
+data/*.h5ad
+data/*.h5
+*.h5ad
+*.h5
+*.pdf
+development_data/
+development_results/
+inference_results/

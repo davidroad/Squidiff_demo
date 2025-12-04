@@ -74,6 +74,7 @@ def prepared_data_development(data_dir=None, batch_size=64):  # Official default
 
 
 def run_training(args):
+    dist_util.setup_dist()
     logger.configure(dir=args['logger_path'])
     logger.log("*********creating model and diffusion**********")
     model, diffusion = create_model_and_diffusion(

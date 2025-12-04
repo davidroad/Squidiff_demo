@@ -43,8 +43,10 @@ def setup_dist():
 
     if th.cuda.is_available(): 
         os.environ["CUDA_VISIBLE_DEVICES"] = f"{rank % GPUS_PER_NODE}"
+        backend = "nccl"
+    else:
+        backend = "gloo"
 
-    backend = "gloo" if not th.cuda.is_available() else "nccl"
     dist.init_process_group(backend=backend, init_method="env://")
 
 

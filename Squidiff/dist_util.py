@@ -41,7 +41,8 @@ def setup_dist():
     rank = int(os.environ["RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = f"{rank % GPUS_PER_NODE}"
+    if th.cuda.is_available(): 
+        os.environ["CUDA_VISIBLE_DEVICES"] = f"{rank % GPUS_PER_NODE}"
 
     backend = "gloo" if not th.cuda.is_available() else "nccl"
     dist.init_process_group(backend=backend, init_method="env://")
